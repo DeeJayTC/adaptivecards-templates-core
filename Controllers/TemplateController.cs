@@ -29,7 +29,6 @@ namespace adaptivecards_templates_core.Controllers
             return Ok(await _resolver.GetTemplateAsync(Request.Path.Value, false));
         }
 
-
         public async Task<IActionResult> ListTemplates()
         {
             try

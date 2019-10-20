@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace adaptivecards_templates_core.Services.PathResolver
+namespace adaptivecards_templates_core.Services
 {
     public class PathResolver : ITemplateResolver
     {
@@ -34,7 +34,6 @@ namespace adaptivecards_templates_core.Services.PathResolver
             }
         }
 
-
         public async Task<string> FindTemplateAsync(string data)
         {
             throw new NotImplementedException();
@@ -58,8 +57,6 @@ namespace adaptivecards_templates_core.Services.PathResolver
         {
             throw new NotImplementedException();
         }
-
-
 
         public async Task<List<TemplateList>> GetChildren(string path)
         {
@@ -102,7 +99,6 @@ namespace adaptivecards_templates_core.Services.PathResolver
             });
             return list;
         }
-
 
         public string GrabFileName(string filename)
         {

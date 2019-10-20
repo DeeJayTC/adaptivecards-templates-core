@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using adaptivecards_templates_core.Services.Interfaces;
+using adaptivecards_templates_core.Services;
 
 namespace adaptivecards_templates_core
 {
@@ -24,6 +26,13 @@ namespace adaptivecards_templates_core
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
+            services.AddMemoryCache();
+
+            // Add the resolver you want to use, currently supported SQL & Path Resolver
+            // For SQL configure Connection String and follow guide
+            services.AddTransient<ITemplateResolver, PathResolver>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +65,11 @@ namespace adaptivecards_templates_core
                     name: "default",
                     pattern: "list",
                     defaults: new { controller = "Template", action = "ListTemplates" });
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "find",
+                    defaults: new { controller = "Template", action = "FindTemplates" });
 
                 endpoints.MapControllerRoute(
                     name: "CatchAllForGetTemplateCall",
