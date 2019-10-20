@@ -26,8 +26,6 @@ namespace adaptivecards_templates_core
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
-
             services.AddMemoryCache();
 
             // Add the resolver you want to use, currently supported SQL & Path Resolver
