@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Folder Include="Services\EntityFrameworkResolver\" />
-    <Folder Include="Services\PathResolver\" />
   </ItemGroup>
 
 </Project>
