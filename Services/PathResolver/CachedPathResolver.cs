@@ -30,11 +30,19 @@ namespace adaptivecards_templates_core.Services
             {
                 var findExt = getDataFile ? ".data.json" : ".json";
                 var templateSearchName = name.Contains(".json") ? name.Replace(".json",findExt) : $"{name}{findExt}";
-                using (StreamReader sr = new StreamReader($".\\templates{templateSearchName}"))
+                var template = string.Empty;
+                var isCached = _cache.TryGetValue(templateSearchName,out template);
+
+                if (string.IsNullOrEmpty(template))
                 {
-                    String templateFile = await sr.ReadToEndAsync();
-                    return templateFile;
+                    using (StreamReader sr = new StreamReader($".\\templates{templateSearchName}"))
+                    {
+                        template = await sr.ReadToEndAsync();
+                        _cache.Set(templateSearchName, template);
+                        return template;
+                    }
                 }
+                return template;
             }
             catch (Exception ex)
             {
